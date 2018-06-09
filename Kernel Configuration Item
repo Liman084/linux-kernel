@@ -1,0 +1,56 @@
+
+Kernel Configuration (Base on Kernel 4.17)
+
+- CONFIG_64BIT
+*64-bit kernel
+	编译64位内核
+
+- CONFIG_CROSS_COMPILE
+*Cross-compiler tool prefix
+	交叉编译工具前缀. 
+
+-CONFIG_COMPILE_TEST
+*Compile also drivers which will not load
+	显示专属于其他平台(非x86平台)的驱动选项(需要交叉编译)
+
+-CONFIG_LOCALVERSION
+*Local version - append to kernel release	
+	在内核版本后面加上自定义的版本字符串(最大64字符),可以用"uname -a"命令看到.
+
+-CONFIG_LOCALVERSION_AUTO
+*Automatically append version information to the version string
+	自动在版本字符串(CONFIG_LOCALVERSION)后面添加版本信息(类似"-gxxxxxxxx"格式),需要有perl以及git仓库支持
+
+-CONFIG_KERNEL_GZIP (Defualt)
+-CONFIG_KERNEL_BZIP2
+-CONFIG_KERNEL_LZMA
+-CONFIG_KERNEL_XZ
+-CONFIG_KERNEL_LZO
+-CONFIG_KERNEL_LZ4
+* Kernel compression mode
+	内核镜像的压缩格式,可选Gzip/Bzip2/LZMA/XZ/LZO格式之一,推荐使用XZ格式.你的系统中需要有相应的压缩工具
+
+-CONFIG_DEFAULT_HOSTNAME
+*Default hostname
+	设置默认主机名,默认值是"(none)".用户可以随后使用系统调用sethostname()来修改主机名.
+
+-CONFIG_SWAP
+*Support for paging of anonymous memory (swap)
+	使用交换分区或者交换文件来做为虚拟内存
+
+-CONFIG_SYSVIPC
+*System V IPC
+	System V 进程间通信(IPC)支持,用于进程间同步和交换数据,许多程序需要这个功能.
+	https://www.ibm.com/developerworks/cn/linux/l-ipc/
+
+-CONFIG_POSIX_MQUEUE
+*POSIX Message Queues
+	POSIX消息队列是POSIX IPC的一部分,如果你想编译和运行那些使用"mq_*"系统调用的程序(比如为Solaris开发的程序),或者需要使用Docker容器,就必须开启此选项.POSIX消息队列可以作为"mqueue"文件系统挂载以方便用户对队列进行操作.不确定的选"Y".
+	http://www.cppblog.com/marv/archive/2012/03/21/168541.aspx
+  
+  
+  
+  ## Reference
+  金步国 http://www.jinbuguo.com/kernel/longterm-linux-kernel-options.html
+  
+
